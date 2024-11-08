@@ -1,0 +1,168 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "ctex",
+	"patterns": [
+		{ "include": "#comment" },
+		{ "include": "#references" },
+		{ "include": "#command" },
+		{ "include": "#mathmode" },
+		{ "include": "#keywords" }
+	],
+	"repository": {
+		"comment": {
+			"patterns": [{
+				"name": "comment.ctex",
+				"match": "%.*$"
+			}]
+		},
+		"keywords": {
+			"patterns": [{
+				"name": "adjective.ctex",
+				"match": "[^a-zA-Z](convex|concave|cyclic|Abelian|free|simple|(sub)?(super)?harmonic( on)?|functional|connected( on)?|small|nice|normal( on)?|natural|perfect|weak|strong|holomorphic( on)?|simply|open( in)?|closed( in)?|real|imaginary|complex|entire|constant( on)?|non|conformal|calm|periodic|continuous( on)?|compact( in)?|bounded( on| by| at)?|unbounded( on| by| at)?|Hausdorff|complete|algebraic|algebraically|positive|negative|large|valued)[^a-zA-Z]"
+			},{
+				"name": "noun.ctex",
+				"match": "[^a-zA-Z](boundary|boundaries|unit|circle|unit|disc|mobius|m\\\"obius|möbius|function|domain|(sub|super)?space|map(ping)?|transform|integral|formula|Poisson|kernel|subset|superset|codomain|Laplacian|average|mean|median|mode|range|topology|topologies|vector)s?[^a-zA-Z]"
+			}]
+		},
+		"command": {
+			"patterns": [{
+				"name": "command.ctex",
+				"match": "\\\\[A-Za-z]+|\\\\\\\\|\\\\\\$"
+			},{
+				"name": "command.ctex",
+				"match": "[𖧀🯆🯅🯈🯇]"
+			}]
+		},
+		"references": {
+			"patterns": [{
+				"name": "references.ctex",
+				"match": "ꔧ[^ $]+",
+				"captures": {
+					"0": {
+						"patterns": [{
+							"name": "resources.ctex",
+							"match": "ꔧ[^:]*:"
+						}]
+					}
+				}
+			}]
+		},
+		"submath": {
+			"patterns": [{
+				"name": "endcheck.ctex",
+				"begin": "√",
+				"end": "⸣",
+				"patterns": [
+					{"include": "mathmode"}
+				]
+			},{
+				"name": "bigop.ctex",
+				"match": "[𝄽∫∬∭⨌∮ΣΠ⋃⋂⨁⨂∱∲∳⨑][⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺⁼⁽⁾ʰᶨʳⁿⁱᵏʷʸᶿᵍᴬᴮᴰᴱᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾᴿᵀᵁᵂᵃᵅᵇᵈᵉᵛᵜᵝᶻꜝᵑᵋ𐞥˟ˣᵞᵟᵠᵡ𝇉ᵸᶛᶜᶝᶞᶟᶠᶡᶢꜛꜜ⸆ᚆᔥᵢᵣᵤᵥᵦᵧᵨᵩᵪ₀₁₂₃₄₅₆₇₈₉₊₋₌₍₎ₐₑₒₓₔₕₖₗₘₙₚₛₜⱼ𝄐𝄑𝅝]*"
+			},{
+				"name": "mathtext.ctex",
+				"begin": "⸢",
+				"end": "⸥",
+				"patterns": [
+					{"include": "mathmode"}
+				]
+			},{
+				"name": "operations.ctex",
+				"match": "[∪∩∗﹪±\\/\\-\\+∂Δ∇⟐∘⨯⨉∴∵⋅·¬∧∨⋀⋁⨇⨈⩄⩅⩑⩒⩓⩔⩕⩖⩙⩚⩛⩜⩝⩞⩟⩠⩢⩣→↦←↔:⁒╱]"
+			},{
+				"name": "quantifiers.ctex",
+				"match": "[✣∀∃,⎉⎊ᔲ⫢]"
+			},{
+				"name": "equalities.ctex",
+				"match": "[∈∋∉∌⊂⊃⊄⊅⊆⊇⊈⊉⊊⊋⋐⋑⟃⟄≡≘≅≃~≈⹀=≠≔≕≖≗≛≜≝≟><≥≤~⇒⇐⇔⫾]"
+			},{
+				"name": "numbers.ctex",
+				"match": "[1234567890∞½⅓¼⅕⅙⅐⅛⅑⅒↉⅔⅖¾⅗⅜⅘⅚⅝⅞\\.𝓲π]"
+			},{
+				"name": "english.ctex",
+				"match": "[𝅘𝅥🝤↘⍟⚇¿↣]"
+			}]
+		},
+		"scripts": {
+			"patterns": [{
+				"name": "mathds.ctex",
+				"match": "[𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝕥𝕦𝕧𝕨𝕩𝕪𝕫𝟘𝟙𝟚𝟛𝟜𝟝𝟞𝟟𝟠𝟡]"
+			},{
+				"name": "mathcal.ctex",
+				"match": "[𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩𝓪𝓫𝓬𝓭𝓮𝓯𝓰𝓱𝓳𝓴𝓵𝓶𝓷𝓸𝓹𝓺𝓻𝓼𝓽𝓾𝓿𝔀𝔁𝔂𝔃]"
+			},{
+				"name": "mathfrak.ctex",
+				"match": "[𝕬𝕭𝕮𝕯𝕰𝕱𝕲𝕳𝕴𝕵𝕶𝕷𝕸𝕹𝕺𝕻𝕼𝕽𝕾𝕿𝖀𝖁𝖂𝖃𝖄𝖅𝖆𝖇𝖈𝖉𝖊𝖋𝖌𝖍𝖎𝖏𝖐𝖑𝖒𝖓𝖔𝖕𝖖𝖗𝖘𝖙𝖚𝖛𝖜𝖝𝖞𝖟]"
+			},{
+				"name": "structures.ctex",
+				"match": "[ƊⱮӍႺⴽҒƇƬꝈ𝄴ꘘᵮ]"
+			},{
+				"name": "superscripts.ctex",
+				"match": "[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺⁼⁽⁾ʰᶨʳⁿⁱᵏʷʸᶿᵍᴬᴮᴰᴱᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾᴿᵀᵁᵂᵃᵅᵇᵈᵉᵛᵜᵝᶻꜝᵑᵋ𐞥˟ˣᵞᵟᵠᵡ𝇉ᵸᶛᶜᶝᶞᶟᶠᶡᶢꜛꜜ⸆ᚆᔥ]"
+			},{
+				"name": "subscripts.ctex",
+				"match": "[ᵢᵣᵤᵥᵦᵧᵨᵩᵪ₀₁₂₃₄₅₆₇₈₉₊₋₌₍₎ₐₑₒₓₔₕₖₗₘₙₚₛₜⱼ𝄐𝄑𝅝]"
+			}]
+		},
+		"mathmode": {
+			"patterns": [{
+				"name": "mathmode.ctex",
+				"match": "¢.",
+				"captures": {
+					"0": {
+						"patterns": [
+							{"include": "#submath"},
+							{"include": "#scripts"}
+						]
+					}
+				}
+			},{
+				"name": "mathmode.ctex",
+				"begin": "(\\$\\$?|💲)",
+				"end": "\\1",
+				"patterns": [
+					{"include": "#submath"},
+					{"include": "#command"},
+					{"include": "#scripts"}
+				]
+			},{
+				"name": "mathmode.ctex",
+				"match": "\\﹩[^ \n]*([?.,]?[ \n])",
+				"captures": {
+					"0": {
+						"patterns": [
+							{"include": "#submath"},
+							{"include": "#command"},
+							{"include": "#scripts"}
+						]
+					}
+				}
+			},{
+				"name": "mathmode.ctex",
+				"begin": "[Ⓐⓐ]",
+				"end": "☠",
+				"patterns": [
+					{"include": "#submath"},
+					{"include": "#command"},
+					{
+						"name": "align.ctex",
+						"match": "&"
+					},
+					{"include": "#scripts"}
+				]
+			},{
+				"name": "mathmode.ctex",
+				"match": "([^ \n💲﹩\\$Ⓐⓐ☠¢]*[^ꔧ \n-<>-~💲﹩Ⓐⓐ☠¢][^ \n💲﹩\\$Ⓐⓐ☠¢]*)",
+				"captures": {
+					"0": {
+						"patterns": [
+							{"include": "#submath"},
+							{"include": "#command"},
+							{"include": "#scripts"}
+						]
+					}
+				}
+			}]
+		}
+	},
+	"scopeName": "source.ctex"
+}

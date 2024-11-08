@@ -1,0 +1,16 @@
+
+#☾out
+#󱠨("f=󰲡x+2", ns=globals())
+#f☾
+#☾←󱠨(‹f(3)›, ns=globals())
+
+#☾←󱠨(‹1+2›,ns=globals())
+
+
+󱠨(‹f=󰲡x+2›, ns=globals())
+☾←󱠨(‹{"x":"f(x)"}|{x:f(x)∀x∈3⭥}›, ns=globals())
+
+d={␛x:‹f(x)›}|{x:x+1∀x∈3⭥}
+☾d
+
+☾←2󷹁

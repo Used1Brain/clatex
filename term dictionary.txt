@@ -1,0 +1,101 @@
+fluff
+⎉let
+ᔲsuppose/assume
+⎊define
+⇝contradiction
+🝤induct on
+¿if .. ↣then
+⇒thus (not done)
+
+category theory
+ꖾhom
+▢obj
+⍟the diagram
+
+group theory
+group Ⴚ
+ →abelian
+ →cyclic
+ →free
+ →simple
+ →permutation
+⚇commutes
+
+ring theory
+ring ⴽ
+ →PID
+ →Noetherian
+ →ED
+ →integral
+ →polynomial ring
+module
+
+field theory
+extension
+ →finite
+ →algebraic
+ →normal
+ →galois
+ →quadratic
+field Ғ
+ →number
+ →finite
+ →quadratic
+characteristic
+
+linear algebra
+vector space
+ →finite dimensional
+ →n-dimensional
+matrix
+ →size
+ →invertible
+ →singular
+ →square
+ →symetric
+ →definite
+ →orthogonal
+ →diagonalizable
+ →diagonal
+ →hermetian
+basis
+
+prob/combin
+generating function
+exponential g.f.
+combination
+permutation
+
+number theory
+inverse limit
+modulo
+
+analysis
+borel set
+domain
+connected
+interval
+simply connected
+continuous
+holomorphic
+harmonic
+limit (0 or ∞?)
+sequence
+ →converges
+ → →uniform
+ → →normal
+ →cauchy
+ → →uniform
+
+geometry
+
+
+topology
+path connected
+open (relatively)
+closed (relatively)
+complete
+
+
+
+

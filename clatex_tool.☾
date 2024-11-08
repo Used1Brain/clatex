@@ -1,0 +1,265 @@
+⮌ peggle ⨡ Parser
+⮌ util ⨡ SCRIPT
+import sys
+󰋺(␛𝐍, ␛𝐍)
+󰋺(‹functions›,*)
+
+GRAM = ␛
+󰦥󰦥󰦥󰦥󰦥
+main = ws* preset? heading com_sequence
+
+moon = ~‹☽[^☽]*☽›
+texmoon = ~‹⯝[^⯝]*⯝›
+fmoon = ~‹⚸[^⚸]*⚸›
+moons = moon ∨ texmoon ∨ fmoon
+
+simple = word_seq ∨ dollar_math ∨ c_math ∨ det_math_seq
+component = comment ∨ word_seq ∨ list ∨ dollar_math ∨ c_math ∨ env_math ∨ det_math_seq ∨ other_env
+sequence = ws* (simple ws*)+
+com_sequence = ws* (component ws*)+
+
+other_env = ~‹[ⓐ-ⓩⒶ-Ⓩ🅐-🅩⍞]› com_sequence ‹☠›
+
+preset = ~‹fun-math|complex-analysis-uark›
+heading = ~‹(.|\n)*\\begin\{document\}› ws* (‹\maketitle›)?
+
+nondetect = ~‹[$☠ⓐ-ⓩⒶ-Ⓩ🅐-🅩¢⍞]› ∨ reserved
+reserved = ~‹[〔〕√∛∜⌝⫚✿╱⊢⌜⌟☽⯝⚸]›
+
+com_math = (¬(open ∨ close ∨ nondetect) (en_section ∨ subsupyee))+
+p_com_math = open com_math_seq? close
+com_math_seq = (⠶moons ∨ en_section ∨ com_word ∨ com_rad ∨ com_frac ∨ com_legendre ∨ com_nCr ∨ com_math ∨ p_com_math ∨ ws)+
+
+block_math = (¬(open ∨ close ∨ nondetect) (block_en_section ∨ subsupyee))+
+p_block_math = open block_math_seq? close
+block_math_seq = (⠶moons ∨ block_en_section ∨ block_word ∨ block_rad ∨ block_frac ∨ block_legendre ∨ block_nCr ∨ block_math ∨ p_block_math ∨ ws)+
+
+punct = ~‹[.,?:;]›
+
+line_math = (¬(open ∨ close ∨ nondetect ∨ (punct? ws)) (break_en_section ∨ subsupyee))+
+p_line_math = open com_math_seq? close
+line_math_seq = (⠶moons ∨ en_section ∨ com_word ∨ com_rad ∨ com_frac ∨ com_legendre ∨ com_nCr ∨ line_math ∨ p_line_math)+
+
+det_math = (¬(open ∨ close ∨ nondetect ∨ (punct? ws)) (break_en_section ∨ subsupyee))+
+p_det_math = open com_math_seq? close
+det_math_seq = (⠶moons ∨ en_section ∨ com_word ∨ com_rad ∨ com_frac ∨ com_legendre ∨ com_nCr ∨ det_math ∨ p_det_math)+
+
+dollar_math = (‹$› com_math_seq ‹$›) ∨ (‹$$› com_math_seq ‹$$›) ∨ (‹󷹹› line_math_seq)
+env_math = (~‹[Ⓐⓐ]› ∨ ~‹[Ⓜⓜ]\{[0-9]+\}›) block_math_seq ‹☠›
+c_math = ~‹¢.[^ -~\n\t]*›
+
+com_frac = ‹(› com_math_seq ‹╱› com_math_seq ‹)›
+block_frac = ‹(› block_math_seq ‹╱› block_math_seq ‹)›
+com_legendre = ‹(› com_math_seq ‹✿› com_math_seq ‹)›
+block_legendre = ‹(› block_math_seq ‹✿› block_math_seq ‹)›
+com_nCr = ‹(› com_math_seq ‹⫚› com_math_seq ‹)›
+block_nCr = ‹(› block_math_seq ‹⫚› block_math_seq ‹)›
+com_rad = (‹〔› com_math_seq ‹〕›)? ~‹[√∛∜]› com_math_seq ‹⌝›
+block_rad = (‹〔› block_math_seq ‹〕›)? ~‹[√∛∜]› block_math_seq ‹⌝›
+com_word = ‹⌜› simple ‹⌟›
+block_word = ‹⌜› simple ‹⌟›
+
+comment = ~‹[󰤱%].*\n›
+word = ~‹[!-#&-'\*-Z\\^-z\|~\[\({}\)\]]+› ⮞(~‹[ -~\n\t〔〕⌟☽⚸]|$›)
+p_word = wopen word_seq? wclose
+word_seq = (⠶moons ∨ p_word ∨ word)+
+
+list = ~‹[Ⓘⓔ]› ws* (item com_sequence)* ‹☠›
+item = ~‹⊢|\\item(!?[a-zA-Z])› 󰆴ws* (‹〔› sequence ‹〕›)?
+
+ws = ~‹[ \n\t]›
+
+wopen = ~‹[\[\({]›
+wclose = ~‹[}\)\]]›
+open = ~‹[\[\({⦋❴⌈⌊⟦⦃⦅⟬⟨⦑⥏⢨《｟【«🢔]›
+close = ~‹[🢖»】｠》⡅⥑⦒⟩⟭⦆⦄⟧⁑⌋⌉❵⦌}\)\]]›
+
+en_word = ~‹[󰘨󱁕󰡷󱘎󰬀󱇙󰑇󰫰󱨹▢󰕞󰝊󰬁󰷔󱁐󰡱ᾇ󰫺󰗴󰨥󰫴󰫿󰫳󰬃󱗿󰫱␌󱧡󰫶󰬂󰫽󰫲󰊕➰󰫮󰊰󰍒󰚥󰎑󰉷󰠩󰑭󰉽✓󰊄󰿨⚙󰍉󰍒󰣰⎋⫢≖∀∃∧∨𝅘𝅥𝅘𝅥𝅰✣⎉⎊ᔲ🝤↘¿¡∵∴↣⍟⚇Æ󰘡󰡏󰘣⍇☒󰇚󱂰󰮧󱏗󱅙󱏖󰶀󰶁󰶂󰶃󰶄⎔✓⊯⮎⮌⪟⪠󰨈☑☒]|␅.› subsup*
+subsup = sub ∨ sup
+sup = ~‹[%topswag%]+›
+sub = ~‹[%bottomswag%]+›
+subsupyee = subsup ∨ ~‹.›
+en_section = en_word+
+block_en_section = en_word+
+break_en_section = en_word+
+
+s = ‹hi›
+
+ops0  = ‹[¬⟺⇒⇐]›
+ops1  = ‹[=≠≔≡≢≅≇≤≥∈∉∌∋<>≮≯≰≱≺≼≾⊀⪯⪱≻≽≿⊁⪰⪲⊂⊄⊊⊆⊈⊃⊅⊋⊇⊉|]›
+ops2  = ‹[⫚✿]›
+ops3  = ‹[﹪↑↓⤉⤈]›
+ops4  = ‹[+-±∓]›
+ops5  = ‹[∪∖⊕⊗⨸⊖]›
+ops6  = ‹[∩]›
+ops7  = ‹[⨯⨉]›
+ops8  = ‹[⋅∗*/╱÷⹏]›
+ops9  = ‹[🃌⌗]›
+ops10 = ‹[∘⋄♢]›
+
+󰦥󰦥󰦥󰦥󰦥
+
+GRAM=GRAM.replace(‹%topswag%›,SCRIPT.SUP.values()Σ)
+GRAM=GRAM.replace(‹%bottomswag%›,SCRIPT.SUB.values()Σ)
+
+dat = 󰦥󰦥󰦥󰦥󰦥\begin{document}
+
+Look at my table: ⚸f=󰲡x⌃2⚸ ⯝{‹󷹹x ›:[‹󷹹f(x) ›,‹󷹹f(x)² ›]}|{x:[f(x),f(x)²]∀x∈10⭥}⯝󰦥󰦥󰦥󰦥󰦥
+file_fail=✗
+try:
+    f = open(sys.argv[1]+".ctex","r",encoding="utf8")
+    dat = f.read()
+except:
+    file_fail=✓
+
+⊢moo(c,m):
+    ¿m≡␛⚸:
+        󱠨(␛+c,ns=globals())
+        ↪
+    s=󱠨(c,ns=globals())
+    ¿m≡␛⯝:
+        ↪(s)
+    ↪ᔐ(s)
+
+GRAM = Parser(GRAM)
+
+⊢do_thing(dat,rule="main"):
+    root = GRAM(dat, rule, DEBUG=✗)
+    root = root.find_replace(󰲡✓, 󰲡(xᵗ∧(xᵗ,xᶜ)∨(xᶜ,[])))
+    root = (rep≔󰲡𝐍(x)¿xᐹᔐ¡𝐍(x₀,⠤x₁ᴍrep))∘root
+    ↪root
+root = do_thing(dat)
+
+¿file_fail:
+    rootᴾ☾
+
+⊢tree_manip(󱁕, max_stage=999999):
+    #☾←󱁕ᵗ
+    ⊢ ƒ(󱁕, rule):
+        cpy_code = (󱁕ᶜᴍ󰲡xᵗ)Σᐦ→₁﹕₋₁
+        ctex_code = moo(cpy_code,m=󱁕ᶜ₀ᵗ)
+        #‹⟦ctex_code⟧ → ⟦rule⟧›☾
+        ¿¬ctex_code:
+            ↪𝐍("john smith")
+        new_root = do_thing(ctex_code,rule)
+        #new_rootᴾ☾
+        new_󱁕 = tree_manip(new_root)
+        ↪ new_󱁕
+    moons=["moon","texmoon","fmoon"]
+    map=ℵ(
+        simple="simple",
+        component="component",
+        com_math_seq="com_math_seq",
+        block_math_seq="block_math_seq",
+        line_math_seq="com_math_seq",
+        det_math_seq="com_math_seq",
+        word_seq="com_sequence"
+    )
+    ↪󱁕.frp(󰲡xᶜ,
+           󰲡x.copy(c=[𝑙(ƒ(y,mapₓ􊫼)ᶜ)¿yᶜ∧yᵗ∈moons¡[tree_manip(y)]∀y∈xᶜ]Σ[]))
+    #↪󱁕
+⊢ swauce(n,⠶𝓚):
+    ¿nᵗ≡"en_word":
+        𝓚=𝓚|{"seen_en_sec":ⴳ}
+    ¡:
+        ¿nᵗ≡"sub"∧"seen_en_sec"∉𝓚:
+            ↪𝐍("SUB", swauce(do_thing(SCRIPT.nrm(nᶜᴍ󰲡xᵗ󰅂Σᐦ), "com_math_seq")))
+        ¿nᵗ≡"sup"∧"seen_en_sec"∉𝓚:
+            ↪𝐍("SUP", swauce(do_thing(SCRIPT.nrm(nᶜᴍ󰲡xᵗ󰅂Σᐦ), "com_math_seq")))
+    nᶜ = nᶜ ᴍ 󰲡swauce(x,⠶𝓚)
+    ↪ n
+⊢ do_is(n,i=ᐦ,p=✓):
+    nc=[]
+    ∀j∈⭥🃌nᶜ:
+        nj,i,p=do_is(nᶜⱼ,i,p)
+        nc.append(nj)
+    nᶜ=nc
+    ¿nᵗ₀∈‹󰘨󱁕󰡷󱘎󰬀󱇙󰑇󰫰󱨹▢󰕞󰝊󰬁󰷔󱁐󰡱ᾇ󰫺󰗴󰨥󰫴󰫿󰫳󰬃󱗿󰫱␌󱧡󰫶󰬂󰫽󰫲󰊕➰󰫮󰊰󰍒󰚥󰎑󰉷󰠩󰑭󰉽✓󰊄󰿨⚙󰍉󰍒󰣰⎋⫢≖∀∃∧∨𝅘𝅥𝅘𝅥𝅰✣⎉⎊ᔲ🝤↘¿¡∵∴↣⍟⚇Æ󰘡󰡏󰘣⍇☒󰇚󱂰󰮧󱏗󱅙󱏖󰶀󰶁󰶂󰶃󰶄⎔✓⊯⮎⮌⪟⪠󰨈☑☒› ∧ p:
+        nᵗ=␛􊷯+nᵗ
+        p = ✗
+    ¿nᵗ≡"heading":
+        p=✓
+    ¿nᵗ∉" \n\t" ∧ nᵗ🃌≡1:
+        p=(nᵗ∈‹☠.!?⊢›)
+    ¿␛⎉∈nᵗ:
+        ↪n,"ᴮ",p
+    ¿␛⎊∈nᵗ:
+        ↪n,"ᴬ",p
+    ¿␛⫢∈nᵗ:
+        nᵗ+=i
+        ↪n,ᐦ,p
+    ¿␛ᔲ∈nᵗ∨nᵗ∈"component"⋄"simple":
+        ↪n,ᐦ,p
+    ↪n,i,p
+⊢ swooce(n):
+    nᶜ = nᶜ ᴍ swooce
+    ¿nᵗ≡"com_word" ∨ nᵗ≡"block_word":
+        ↪‹{\text{⟦nᶜ₁⟧}}›
+    ¿nᵗ≡"com_frac" ∨ nᵗ≡"block_frac":
+        ↪‹{\frac{⟦nᶜ₁⟧}{⟦nᶜ₃⟧}}›
+    ¿nᵗ≡"com_legendre" ∨ nᵗ≡"block_legendre":
+        ↪‹{\left(\frac{⟦nᶜ₁⟧}{⟦nᶜ₃⟧}\right)}›
+    ¿nᵗ≡"com_nCr" ∨ nᵗ≡"block_nCr":
+        ↪‹{\binom{⟦nᶜ₁⟧}{⟦nᶜ₃⟧}}›
+    ¿nᵗ≡"com_rad" ∨ nᵗ≡"block_rad":
+        ¿nᶜ₀≡‹〔›:
+            ↪‹{\sqrt[⟦nᶜ₁⟧]{⟦nᶜ₄⟧}}›
+        ⸘nᶜ₀≡‹∛›:
+            ↪‹{\sqrt[3]{⟦nᶜ₁⟧}}›
+        ⸘nᶜ₀≡‹∜›:
+            ↪‹{\sqrt[4]{⟦nᶜ₁⟧}}›
+        ¡:
+            ↪‹{\sqrt{⟦nᶜ₁⟧}}›
+    ¿nᵗ≡"SUB":
+        ↪‹_{⟦nᶜΣ⟧}›
+    ¿nᵗ≡"SUP":
+        ↪‹^{⟦nᶜΣ⟧}›
+    ¿nᵗ≡"det_math_seq":
+        ↪‹$⟦repl(nᶜΣ)⟧$›
+    ¿nᵗ≡"dollar_math"∧nᶜ₀≡"󷹹":
+        ↪‹$⟦repl(nᶜ₁﹕Σ)⟧$›
+    ¿nᵗ≡"c_math":
+        ↪‹$⟦repl((nᶜΣᐦ)₁﹕)⟧$›
+    ¿nᵗ≡"env_math":
+        ↪‹\begin{⟦e≔env(nᶜ₀)⟧}⟦repl(nᶜ₁)⟧\end{⟦e⟧}›
+    ¿nᵗ≡"block_math_seq":
+        ↪(nᶜΣ).replace(‹⠤𝗻›,‹ ›).replace(‹𝗻›,‹\\𝗻›)
+    ¿nᵗ≡"item":
+        ↪‹\item⟦‹[⟦nᶜ₂⟧]›¿nᶜ🃌>1¡ᐦ⟧ ›
+    ¿nᵗ≡"list":
+        ↪‹\begin{⟦e≔env(nᶜ₀)⟧}⟦nᶜ₁﹕₋₁Σ⟧\end{⟦e⟧}›
+    ¿nᵗ≡"other_env":
+        ↪‹\begin{⟦e≔env(nᶜ₀)⟧}⟦nᶜ₁⟧\end{⟦e⟧}›
+    ¿nᵗ≡"preset":
+        ↪pre(nᶜΣ)
+    ¿nᵗ≡"comment":
+        ↪␛%+(nᶜΣ)
+    ¿nᵗ≡"en_word":
+        ↪‹ $ ⟦enify(nᶜΣ)⟧ $ ›
+    ¿nᵗ≡"open":
+        ↪par(n₀)
+    ¿nᵗ≡"close":
+        ↪par(n₀)
+    ¿nᵗ≡"word_seq":
+        ¿nᶜ:
+            ↪nᶜΣ
+        ↪ᐦ
+    ↪ nᶜΣ ¿nᶜ¡ nᵗ
+troot=tree_manip∘root
+¿file_fail:
+    trootᴾ☾
+swauroot=swauce∘troot
+iswauroot,_,_=do_is(swauroot)
+swooroot=swooce∘iswauroot
+swooroot = swooroot.replace(‹$ $ ›,ᐦ)
+swooroot = swooroot.replace(‹ $  $ ›,␛ )
+swooroot = swooroot.replace(‹ .›,␛.)
+swooroot = swooroot.replace(‹\lim \sup ›,‹\limsup›)
+swooroot = swooroot.replace(‹\lim \inf ›,‹\liminf›)
+swooroot+=‹𝗻\end{document}›
+swooroot→☾
+
+try:
+    f.close()
+except:
+    pass

@@ -1,0 +1,41 @@
+󰦥󰦥󰦥󰦥󰦥
+
+parser_main = preset? heading com_sequence
+
+simple = word ∨ mathword ∨ reference ∨ dollar_math ∨ detect_math
+component = word ∨ mathword ∨ list ∨ environment ∨ math_env ∨ reference ∨ math
+sequence = W* (simple W+)* simple?
+com_sequence = W* (component W+)* component?
+
+preset = ~‹fun-math|complex-analysis-uark›
+heading = ~‹.*\\begin{document}W*(\\maketitle)?›
+
+mathword = ‹¢› (¬W ~‹.›)*
+word = ~‹[!-#%-~]+›
+math = dollar_math ∨ env_math ∨ detect_math
+detect_math = ~‹[^ \t\n$ꔧⓐ-ⓩⒶ-Ⓩ⊢\$]+›
+dollar_math = (‹\$\$› ↷ com_math_guts) ∨ (‹\$› ↷ com_math_guts) ∨ (‹﹩› math_guts)
+env_math = ~‹[ⓐⒶ]› com_math_guts env_end
+
+math_guts = ~‹[^ \t\n$ꔧⓐ-ⓩⒶ-Ⓩ⊢\$]+›
+com_math_guts = ~‹[^ⓐ-ⓩⒶ-Ⓩ⊢\$]+›
+
+list = list_start W* (item com_sequence)* env_end
+list_start = ~‹[Ⓘⓔ]›
+item = ~‹⊢|\\item› (W* ~‹[› sequence ~‹]›)?
+
+environment = ~‹[ⓑⓒⓓⓕ-ⓩⒷ-ⒽⒿ-Ⓩ]› com_sequence env_end
+
+reference = ‹ꔧ› source? theorem
+source = ~‹[^:⌜⌟ \n\t]*:›
+theorem = ~‹[^:⌜⌟ \n\t]+›
+
+env_end = ‹☠›
+W = ~‹[ \n\t$]›
+open = ~‹[\[\(]›
+close = ~‹[\)\]]›
+en_sym = en_part+
+en_part = ~‹[𝅘𝅥🝤∀∃]› subsup*
+subsup = ~‹ₑᵣₜᵤᵢ󰂼ₚₗₖⱼₕₛₐₓᵥₙₘʷᵉʳᵗʸᵘⁱᵒᵖᵃˢᵈᶠᵍʰʲᵏˡᶻˣᶜᵛᵇⁿᵐ󰂣󰂩󰂗󰂤󰂦󰂫󰂧󰂛󰂡󰂢󰂞󰂝󰂜󰂚󰂙󰂘󰂖󰂥󰂓󰂬󰂪󰂕󰂨󰂔󰂠󰂟󰀐ᵂᴱᴿᵀ󰀘ᵁᴵᴼᴾᴬ󰀒ᴰ󰀅ᴳᴴᴶᴷᴸ󰀙󰀗󰀂ⱽᴮᴺᴹ›
+
+󰦥󰦥󰦥󰦥󰦥
