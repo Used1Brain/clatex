@@ -1,7 +1,0 @@
-[
-    {
-        "code": "G&K:Theorem 1.2.3",
-        "name": "Greene and Krantz Complex Analysis Theorem 1.2.3",
-        "statement": "This is a sample theorem for testing. It contains the inline equation $x^2+y^2=1$ and the block equation $$x,y\\in\\mathbf{R}$$ with the aligned conclusion\\begin{align*}x=&\\cos\\theta\\\\\\y=&\\sin\\theta\\end{align} for some $\\theta\\in[0,2\\pi)$"
-    }
-]
