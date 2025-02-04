@@ -63,20 +63,21 @@ par=󰲡parensₓ
 
 
  useful math functions
+🟑
 
-Ω 󰡱:
+󱀘 󰡱:
     ⊢__init__(𝕊,v):
         𝕊ᶜ=[0]
         ¿⋁v:
             ➰¬v₋₁:
                 v=v﹕₋₁
             𝕊ᶜ=v
-    __call__ = ⥌𝕊,x↦[𝕊ᶜᵢ⋅x⌃i∀i∈𝕊ᶜ🃌⭥]Σ0
+    __call__ = ⥌𝕊,x↦[𝕊ᶜᵢ⋅x⌃i∀i∈𝕊ᶜ🃌⭥]⨁0
     ⊢__str__(𝕊):
         ¿𝕊ᶜ🃌≡1:
             ↪ᔐ←𝕊ᶜ₀
         s=ᐦ
-        ∀i,v∈ζ(𝕊ᶜ🃌⭥,𝕊ᶜ):
+        ∀i,v∈󱑼(𝕊ᶜ🃌⭥,𝕊ᶜ):
             ¿i∧v∈±1:
                 s+=(␛+¿s∧v>0¡ᐦ)+␛x+(‹^{›+ᔐ(i)+␛}¿i>1¡ᐦ)
             ⸘v:
@@ -84,7 +85,7 @@ par=󰲡parensₓ
 
         ↪s
     deg = ⥌𝕊↦𝕊ᶜ🃌
-    mult = ⥌𝕊,g↦󰡱([[𝕊ᶜⱼ⋅gᶜᵢ₋ⱼ∀j∈(⤉(0,i-gᶜ🃌+1))…(⤈(i+1,𝕊ᶜ🃌))]Σ∀i∈(𝕊ᶜ🃌+gᶜ🃌-1)⭥])
+    mult = ⥌𝕊,g↦󰡱([[𝕊ᶜⱼ⋅gᶜᵢ₋ⱼ∀j∈(⤉(0,i-gᶜ🃌+1))…(⤈(i+1,𝕊ᶜ🃌))]⨁∀i∈(𝕊ᶜ🃌+gᶜ🃌-1)⭥])
     add = ⥌𝕊,g↦󰡱([(𝕊ᶜᵢ¿i<𝕊ᶜ🃌¡0)+(gᶜᵢ¿i<gᶜ🃌¡0)∀i∈⤉(𝕊ᶜ🃌,gᶜ🃌)⭥])
     sub = ⥌𝕊,g↦󰡱([(𝕊ᶜᵢ¿i<𝕊ᶜ🃌¡0)-(gᶜᵢ¿i<gᶜ🃌¡0)∀i∈⤉(𝕊ᶜ🃌,gᶜ🃌)⭥])
     ↓ g is monic ↓
@@ -96,10 +97,6 @@ par=󰲡parensₓ
         v=𝕊ᶜ🃌-gᶜ🃌
         ↪󰡱([𝕊ᶜᵢ∀i∈v⭥]+[𝕊ᶜᵢ₊ᵥ-𝕊ᶜ₋₁⋅gᶜᵢ∀i∈gᶜ🃌⭥]).mod(g)
 
-Ω ν:
-    __getitem__ = ⥌𝕊,p↦f≔n↦0¿n%p¡f(n⹏p)+1
-    __call__ = ⥌𝕊,x↦σ₀(x)
-ν = ν
 ⊢factor(n,s=2): 󰤱without recursion
     ¿n≡1:
         ↪[]
@@ -108,19 +105,8 @@ par=󰲡parensₓ
     ¿n%s:
         ↪factor(n,s+1)
     ↪[(s,c≔νₛ(n))]+factor(n⹏s⌃c)
-Ω ¶:
-    ⊢__contains__(𝕊,n):
-        ¿n<2∨←¬←n%2∨n≡2:
-            ↪✗
-        ∀x∈3…𝑖(1+√n):
-            ¿¬←n%x:
-                ↪✗
-        ↪✓
-    __getitem__ = ⥌𝕊,x↦[p∀p∈x⭥¿p∈𝕊]
-    __call__ = ⥌𝕊,n↦factor(n)ᴍ󰲡x₀
-¶ = ¶
-unfactor=󰲡xᴍ󰲡x₀ˣ􊿦󰅂Π
-factors=󰲡⨉([p₀⌃α∀α∈(1+p₁)⭥]∀p∈xᣆˣ􊾗􋇖factor)ᴍ󰲡xΠ
+unfactor=󰲡xᴍ󰲡x₀ˣ􊿦󰅂⨀
+factors=󰲡⨉([p₀⌃α∀α∈(1+p₁)⭥]∀p∈xᣆˣ􊾗􋇖factor)ᴍ󰲡x⨀
 ⊢collatz(n):
     𝔩=[n]
     ➰1∉𝔩:
@@ -134,19 +120,19 @@ factors=󰲡⨉([p₀⌃α∀α∈(1+p₁)⭥]∀p∈xᣆˣ􊾗􋇖factor)ᴍ�
     ¿r%2:
         ↪powmod(n,r⹏2,p)⌃2⋅n%p
     ↪powmod(n,r⹏2,p)⌃2%p
-Ω σ:
-    __getitem__ = ⥌𝕊,z↦n↦factor(n)ᴍ󰲡[x₀⌃←i⋅z∀i∈(1+x₁)⭥]Σ󰅂Π
+󱀘 ⨁:
+    __getitem__ = ⥌𝕊,z↦n↦factor(n)ᴍ󰲡[x₀⌃←i⋅z∀i∈(1+x₁)⭥]⨁󰅂⨀
     __call__ = 𝕊↦𝕊₁(⠤𝔸, ⠶𝕂)
-σ = σ
-φ=int○󰲡factor(x)ᴍ󰲡1-1/x₀󰅂Πx
+⨁ = ⨁
+φ=int○󰲡factor(x)ᴍ󰲡1-1/x₀󰅂⨀x
 squarefree = 󰲡1≡⤉←₁+←factor(x)ᴍ󰲡x₁
 μ=󰲡(-1)􋌵ᶠᵃᶜᵗᵒʳ⁽ˣ⁾¿squarefree(x)¡0
-ω=󰲡🃌factor(x)
-ωω=󰲡factor(x)ᴍ󰲡x₁󰅂Σ¿x-1¡1
-ϑ=󰲡¶ₓ₊₁ᴍlog→Σ
-λ=󰲡(-1)⌃ωω(x)
+ 󱀘=󰲡🃌factor(x)
+ 󱀘󱀘=󰲡factor(x)ᴍ󰲡x₁󰅂⨁¿x-1¡1
+ϑ=󰲡¶ₓ₊₁ᴍlog→⨁
+ λ=󰲡(-1)⌃󱀘󱀘(x)
 Λ=󰲡0¿-1+🃌p≔factor(x)¡log(p₀ ₀)
-⫚=󰲣x!⹏←y!⋅←(x-y)!
+ ⫚=󰲣x!⹏←y!⋅←(x-y)!
 syl=󰲡{p:[y∀y∈factors(x⹏νₚ(x))¿y%p≡1]∀p∈¶(x)}
 ⊢ord(a,p):
     ¿gcd(a,p)>1:
@@ -156,7 +142,7 @@ syl=󰲡{p:[y∀y∈factors(x⹏νₚ(x))¿y%p≡1]∀p∈¶(x)}
         v=v*a%p
         c+=1
     ↪c
-rad=󰲡¶(x)Π
+rad=󰲡¶(x)⨀
 ⊢fibonacci(n):
     ¿n∈0⋄1:
         ↪n
@@ -164,13 +150,13 @@ rad=󰲡¶(x)Π
     ∀i∈(n-1)⭥:
         a,b=b,a+b
     ↪b
-dot=󰲣[xᵢ⋅yᵢ∀i∈⭥🃌x]Σ
-sgn=󰲡-1¿x<0¡1¿x¡0
+dot=󰲣[xᵢ⋅yᵢ∀i∈⭥🃌x]⨁
+ sgn=󰲡-1¿x<0¡1¿x¡0
 ⊢✿(a,n):
     ¿n≡0:
         ↪𝑖←a∈±1
     f=factor(n⹏2⌃←e≔ν₂(n))
-    ↪(1¿sgn(n)≡1∨a≥0¡-1)⋅(1¿a%8∈[1,7]¡-1¿a%2¡0)⌃e⋅([leg(a,x₀)⌃x₁∀x∈f]→Π1)
+    ↪(1¿sgn(n)≡1∨a≥0¡-1)⋅(1¿a%8∈[1,7]¡-1¿a%2¡0)⌃e⋅([leg(a,x₀)⌃x₁∀x∈f]→⨀1)
 leg=󰲣powmod(x,y-1→⹏2,y)+1→%y-1
 ⊢factmod(x,p):
     a=1
@@ -189,4 +175,15 @@ leg=󰲣powmod(x,y-1→⹏2,y)+1→%y-1
 
 󰤱generalize fibonacci
 
-funny=󰲡¶ₓ󰈲󰲡¶∋←1+←¶ₓ₊₁Π
+funny=󰲡¶ₓ󰈲󰲡¶∋←1+←¶ₓ₊₁⨀
+
+
+⊢𝔅(k):
+    ¿¬k:  ↪1
+    ¿k≡1: ↪-½
+    ¿k%2: ↪0
+    ✗⨳‹󰤱𝔅ernoulli numbers for evens›
+
+⊢ratζ(k):
+    k%2≡0⨳‹ratζ only works for evens›
+    ↪(2k%󷱅+2)⌃(k-1)⋅𝔅(k)/k!

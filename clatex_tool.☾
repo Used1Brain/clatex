@@ -1,4 +1,5 @@
-⮌ peggle ⨡ Parser
+⮌ PEGGLE2_BOOTSTRAP_AAUGH ⨡ Peggle1Bootstrap
+Parser = Peggle1Bootstrap₂
 ⮌ util ⨡ SCRIPT
 import sys
 󰋺(␛𝐍, ␛𝐍)
@@ -99,8 +100,8 @@ ops10 = ‹[∘⋄♢]›
 
 󰦥󰦥󰦥󰦥󰦥
 
-GRAM=GRAM.replace(‹%topswag%›,SCRIPT.SUP.values()Σ)
-GRAM=GRAM.replace(‹%bottomswag%›,SCRIPT.SUB.values()Σ)
+GRAM=GRAM.replace(‹%topswag%›,SCRIPT.CHAR_SUP⨁)
+GRAM=GRAM.replace(‹%bottomswag%›,SCRIPT.CHAR_SUB⨁)
 
 dat = 󰦥󰦥󰦥󰦥󰦥\begin{document}
 
@@ -136,7 +137,7 @@ root = do_thing(dat)
 ⊢tree_manip(󱁕, max_stage=999999):
     #☾←󱁕ᵗ
     ⊢ ƒ(󱁕, rule):
-        cpy_code = (󱁕ᶜᴍ󰲡xᵗ)Σᐦ→₁﹕₋₁
+        cpy_code = (󱁕ᶜᴍ󰲡xᵗ)⨁ᐦ→₁﹕₋₁
         ctex_code = moo(cpy_code,m=󱁕ᶜ₀ᵗ)
         #‹⟦ctex_code⟧ → ⟦rule⟧›☾
         ¿¬ctex_code:
@@ -156,16 +157,16 @@ root = do_thing(dat)
         word_seq="com_sequence"
     )
     ↪󱁕.frp(󰲡xᶜ,
-           󰲡x.copy(c=[𝑙(ƒ(y,mapₓ􊫼)ᶜ)¿yᶜ∧yᵗ∈moons¡[tree_manip(y)]∀y∈xᶜ]Σ[]))
+           󰲡x.copy(c=[𝑙(ƒ(y,mapₓ􊫼)ᶜ)¿yᶜ∧yᵗ∈moons¡[tree_manip(y)]∀y∈xᶜ]⨁[]))
     #↪󱁕
 ⊢ swauce(n,⠶𝓚):
     ¿nᵗ≡"en_word":
         𝓚=𝓚|{"seen_en_sec":ⴳ}
     ¡:
         ¿nᵗ≡"sub"∧"seen_en_sec"∉𝓚:
-            ↪𝐍("SUB", swauce(do_thing(SCRIPT.nrm(nᶜᴍ󰲡xᵗ󰅂Σᐦ), "com_math_seq")))
+            ↪𝐍("SUB", swauce(do_thing(SCRIPT.nrm(nᶜᴍ󰲡xᵗ󰅂⨁ᐦ), "com_math_seq")))
         ¿nᵗ≡"sup"∧"seen_en_sec"∉𝓚:
-            ↪𝐍("SUP", swauce(do_thing(SCRIPT.nrm(nᶜᴍ󰲡xᵗ󰅂Σᐦ), "com_math_seq")))
+            ↪𝐍("SUP", swauce(do_thing(SCRIPT.nrm(nᶜᴍ󰲡xᵗ󰅂⨁ᐦ), "com_math_seq")))
     nᶜ = nᶜ ᴍ 󰲡swauce(x,⠶𝓚)
     ↪ n
 ⊢ do_is(n,i=ᐦ,p=✓):
@@ -211,40 +212,40 @@ root = do_thing(dat)
         ¡:
             ↪‹{\sqrt{⟦nᶜ₁⟧}}›
     ¿nᵗ≡"SUB":
-        ↪‹_{⟦nᶜΣ⟧}›
+        ↪‹_{⟦nᶜ⨁⟧}›
     ¿nᵗ≡"SUP":
-        ↪‹^{⟦nᶜΣ⟧}›
+        ↪‹^{⟦nᶜ⨁⟧}›
     ¿nᵗ≡"det_math_seq":
-        ↪‹$⟦repl(nᶜΣ)⟧$›
+        ↪‹$⟦repl(nᶜ⨁)⟧$›
     ¿nᵗ≡"dollar_math"∧nᶜ₀≡"󷹹":
-        ↪‹$⟦repl(nᶜ₁﹕Σ)⟧$›
+        ↪‹$⟦repl(nᶜ₁﹕⨁)⟧$›
     ¿nᵗ≡"c_math":
-        ↪‹$⟦repl((nᶜΣᐦ)₁﹕)⟧$›
+        ↪‹$⟦repl((nᶜ⨁ᐦ)₁﹕)⟧$›
     ¿nᵗ≡"env_math":
         ↪‹\begin{⟦e≔env(nᶜ₀)⟧}⟦repl(nᶜ₁)⟧\end{⟦e⟧}›
     ¿nᵗ≡"block_math_seq":
-        ↪(nᶜΣ).replace(‹⠤𝗻›,‹ ›).replace(‹𝗻›,‹\\𝗻›)
+        ↪(nᶜ⨁).replace(‹⠤𝗻›,‹ ›).replace(‹𝗻›,‹\\𝗻›)
     ¿nᵗ≡"item":
         ↪‹\item⟦‹[⟦nᶜ₂⟧]›¿nᶜ🃌>1¡ᐦ⟧ ›
     ¿nᵗ≡"list":
-        ↪‹\begin{⟦e≔env(nᶜ₀)⟧}⟦nᶜ₁﹕₋₁Σ⟧\end{⟦e⟧}›
+        ↪‹\begin{⟦e≔env(nᶜ₀)⟧}⟦nᶜ₁﹕₋₁⨁⟧\end{⟦e⟧}›
     ¿nᵗ≡"other_env":
         ↪‹\begin{⟦e≔env(nᶜ₀)⟧}⟦nᶜ₁⟧\end{⟦e⟧}›
     ¿nᵗ≡"preset":
-        ↪pre(nᶜΣ)
+        ↪pre(nᶜ⨁)
     ¿nᵗ≡"comment":
-        ↪␛%+(nᶜΣ)
+        ↪␛%+(nᶜ⨁)
     ¿nᵗ≡"en_word":
-        ↪‹ $ ⟦enify(nᶜΣ)⟧ $ ›
+        ↪‹ $ ⟦enify(nᶜ⨁)⟧ $ ›
     ¿nᵗ≡"open":
         ↪par(n₀)
     ¿nᵗ≡"close":
         ↪par(n₀)
     ¿nᵗ≡"word_seq":
         ¿nᶜ:
-            ↪nᶜΣ
+            ↪nᶜ⨁
         ↪ᐦ
-    ↪ nᶜΣ ¿nᶜ¡ nᵗ
+    ↪ nᶜ⨁ ¿nᶜ¡ nᵗ
 troot=tree_manip∘root
 ¿file_fail:
     trootᴾ☾

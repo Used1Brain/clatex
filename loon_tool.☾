@@ -1,0 +1,133 @@
+󰋺("peggle2", ⠤‹peggle2 Ń›⍭)
+󰋺("kots", *)
+cd(@)
+󰋺("rgx_golfatron", "rgx_golfatron")
+󰋺(‹functions›,*)
+cd()
+
+⮌ util ⨡ SCRIPT
+⮌ sys ⨡ argv as 𝒜𝒱
+
+GRAM = ␛
+󰦥󰦥󰦥󰦥󰦥
+main = 󰆴ws* preset? heading anything
+ws = ~‹[ \n\t]›
+preset = ~‹fun-math|complex-analysis-uark›
+heading = ~‹((?!\\begin\{document\}).)*\\begin\{document\}› ws* (‹\maketitle›)?
+
+anything = (loon (tex ∨ 󰆴big_comment)?)*
+tex = ‹› ↷ ~‹[^]*›
+big_comment = ‹🟑› ↷ ~‹[^🟑]*›
+
+loon = (ws ∨ fluff ∨ proof_math ∨ ⠶math)+
+fluff = ~‹([!-#&-'\*-Z\\^-z\|~\[\({}\)\]]|␛␛.)+((?= |\$))›
+math = block_math ∨ line_math
+block_math = ‹$$› ↷ ⠶big_math
+line_math = ((󰆴‹$›) ↷ ⠶big_math) ∨ ⠶poor_math ∨ ⠶smol_math
+
+big_math = (english ∨ all_symbol)+
+english = ~‹([󰘨󱁕󰡷󱘎󰬀󱇙󰑇󰫰󱨹▢󰕞󰝊󰬁󰷔󱁐󰡱ᾇ󰫺󰗴󰨥󰫴󰫿󰫳󰬃󱗿󰫱␌󱧡󰫶󰬂󰫽󰫲󰊕➰󰫮󰊰󰍒󰚥󰎑󰉷󰠩󰑭󰉽✓󰊄󰿨⚙󰍉󰣰⎋⫢≖∀∃∧∨𝅘𝅥𝅘𝅥𝅰✣ᔲ🝤↘¿¡∵∴↣⍟⚇Æ󰘡󰡏󰘣⍇󰇚󱂰󰮧󱏗󱅙󱏖󰶀󰶁󰶂󰶃󰶄⎔⊯⮎⮌⪟⪠󰨈☑☒]|␅.)´?› esubsup*
+esubsup = ~‹[%topswag%%bottomswag%]+›
+all_symbol = ~‹[^\$]›
+
+smol_math = (english ∨ no_ws_symbol)+
+no_ws_symbol = ~‹[^\$ \n\t]›
+
+poor_math = 󰆴‹¢› ((english ∨ no_ascii)+ ∨ (~‹.› (english ∨ no_ascii)* ascii))
+no_ascii = ~‹[^\n\t -~]›
+ascii = ~‹[\n\t -~]›
+
+proof_math = (󰆴‹› ↷ ⠶proof)
+no_reserved = ~‹[^󰟡ᔲ∴∵⇒⇐⟺∧∨⋄⫢∀∃∄✣⇥↯⎉⎊↣]+›
+proof = (s_c (t_ch s_c)* t_ch?) ∨ (t_ch (s_c t_ch)* s_c?)
+s_c = (~‹󰟡([ᴵᴱ]?)› (‹〔› (ao_ch △ ‹þ›) ‹〕›)?)? (t_ch ‹↯› (b_ch △ ‹∵›) (‹∴› imp_ch)? ‹✓›)+
+t_ch = (con_ch ‹↣›)? (b_ch △ ~‹↯?∴›)
+con_ch = (~‹[⎉⎊ᔲ]› (((is ∨ no_reserved) (‹✣› (ex_ch ∨ imp_ch))?) △ ‹⋄›))+ △ ‹⋄›
+b_ch = (ex_ch ∨ imp_ch) △ ~‹↯?∵›
+ex_ch = (⠶forall ∨ ⠶thereis)+
+forall = ~‹[∀]› ((english? no_reserved) △ ‹⋄›) (‹✣› (ex_ch ∨ imp_ch))? (⠶ex_ch ∨ (‹⇥› imp_ch))
+thereis = ~‹[∃∄]› ((english? no_reserved) △ ‹⋄›) (‹✣› (ex_ch ∨ imp_ch))?
+imp_ch = ao_ch △ ~‹[⇒⇐⟺]›
+ao_ch = (is ∨ no_reserved) △ ~‹[∧∨]›
+is = d_ch ‹⫢› english
+d_ch = no_reserved △ ‹⋄›
+
+󰦥󰦥󰦥󰦥󰦥
+
+GRAM=GRAM.replace(‹%topswag%›,SCRIPT.CHAR_SUP)
+GRAM=GRAM.replace(‹%bottomswag%›,SCRIPT.CHAR_SUB)
+
+SD = rgx_golfatron(SCRIPT.CHAR_SUB)
+SU = rgx_golfatron(SCRIPT.CHAR_SUP)
+ AS = rgx_golfatron(𝗻 󰛔ᵃᵘᵗᵒˢᵖᵃᶜᵉ ␛  → ⍭ᴍᔐ.strip)
+ GRAM 󷸊 ∘ᵜ ← ‹%SCRIPTD% %SCRIPTU%›⍭ 󰛔 [SD, SU]
+GRAM = peggle2(GRAM)
+
+dat = 󰦥󰦥󰦥󰦥󰦥\begin{document}
+words$math$ x²+3 english␛ń and more words. ¢x²-󰫺 123󰫺´₃456➰󰀂
+∀x>0∃y∈ℝ✣y>0∧∀z>y⇥y²=x
+󰦥󰦥󰦥󰦥󰦥
+
+⊢english_magic(e,pl=✗):
+    ↪e≡␛󰫺⭜‹module›⭝e
+
+𝔗 = 󷺻Ń(⟞, e=𝚃)
+
+𝚃 = ℵ(T=✓)
+⊢ proc(x):
+    󱁕 = GRAM(x)
+    ⊢ ƒ(󱁕):
+        lsub, lsup, rb = [␛_␛{, ␛^␛{, ␛}]ᴍ𝔗
+        ¿󱁕ᵗ≡"sub": ↪ Ń("grp", lsub, proc(󱁕.as_txt⥉SCRIPT.nrm), rb)
+        ¡        : ↪ Ń("grp", lsup, proc(󱁕.as_txt⥉SCRIPT.nrm), rb)
+    ⊢line_math(󱁕):
+        dollah=𝔗(‹$›)
+        newc=⍁
+        mafs=✗
+        ∀c∈󱁕ᶜ:
+            ¿mafs󷺦cᵗ∈‹english›⋄‹ascii›:
+                newc.append(dollah)
+                mafs󷸊¬
+            newc.append(c)
+        ¿mafs: newc.append(dollah)
+        ↪Ń("combo", ⠤newc)
+    󱁕.ftrp("sub sup"⍭, ƒ)
+    󱁕.ftrp("fluff"⍭, 󱁕↦𝔗(␛␛󰛔ᐦ→(󱁕.as_txt)))
+    󱁕.ftrp("line_math"⍭, line_math)
+    󱁕.ftrp("english"⍭, 󱁕↦𝔗(english_magic(󱁕.as_txt)))
+    ↪ 󱁕
+
+file_fail=✗
+try:
+    dat = (𝒜𝒱₁+".loon")
+except:
+    file_fail=✓
+
+🟑
+⊢moo(c,m):
+    ¿m≡␛⚸:
+        󱠨(␛+c,ns=globals())
+        ↪
+    s=󱠨(c,ns=globals())
+    ¿m≡␛⯝:
+        ↪(s)
+    ↪ᔐ(s)
+🟑
+
+root=proc(dat)
+¿file_fail:
+    rootᴾ
+¿file_fail:
+    root.as_txt☾
+
+ ¿file_fail:
+     outᴾ☾
+ out = out.replace(‹\lim \sup ›,‹\limsup ›)
+ out = out.replace(‹\lim \inf ›,‹\liminf ›)
+ out+=‹𝗻\end{document}›
+ out→☾
+
+try:
+    f.close()
+except:
+    pass

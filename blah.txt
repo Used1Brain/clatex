@@ -1,0 +1,113 @@
+󰫴            a group
+󰫴´           the group
+󰫴G⋄H⋄K       groups G, H, and K
+󰫴´G⋄H⋄K      the groups G, H, and K
+󰫴􌾕           groups
+󰫴´􌾕          the groups
+󰫴´􌾕⫢         the groups are
+󰫴􌾕❴Gₖ❵ₖ₌₁􋔛⫢  groups ❴Gₖ❵ₖ₌₁􋔛 are
+󰫴G⫢          group G is
+G⫢␛󰫴󰀅        G is finite
+
+a union     ␅∪
+the union   ␅∪´
+unions      ␅∪􌾕
+the unions  ␅∪´􌾕
+
+󰫴≔group
+󰫴ᶠ≔free
+󰫯≔banana
+
+-y±√(y²-4xz)→÷(2x)
+ =(y÷(󷰿x)) ± √((y÷(󷰿x))²-(z÷x))
+󰲥y󷸊÷󷰿x→±√←y²-z÷x
+
+
+order of split:
+(󰟡ᴵᴱ􊽨 〔|〕?)? (ᔲ¿¡ ↯ ∵* ∴? ✓)+
+∵*
+∴*
+∃∄∀✣⇥
+⇒⇐⟺
+∧∨
+⋄* ⫢ .
+
+
+A⇒B⇒C
+A implies B and B implies C.
+A∵B∵C⇐D∴E∵F↯∴G
+We have C whenever D. Thus B. Thus A. Thus E because F. This is a contradiction, so G.
+
+∴y∉¶
+⎉x∈¶
+⎊G⫢󰫴ₓ
+↣Gˣ⫢󰫴₁
+∴x≠y
+
+A∵B.
+    (begin of sentence⭜We have) A because B
+    Since B, (B end with symbol⭜we have) A
+A∴B.
+    (begin of sentence⭜We have) A, so (match󰇚also) B
+    Since A, (A end with symbol⭜we have) B
+
+Ⓟ
+Prove the following special case of part (2) of the Jordan-Holder theorem,
+ᔲ󰫴􍰓G has composition series
+Ⓐ❴1❵=N₀⊴N₁⊴…⊴Nᵣ=G ⋄ ❴1❵=M₀⊴M₁⊴M₂=G.☠
+Show that r=2∧𝑙´⎔ composition factors ⫢ equal.
+☠
+🅟
+N₁M₁≤G ∵ M₁⊴G
+    ∴ꔧ2nd_iso_thm:N₁M₁/M₁≅N₁/(N₁∩M₁)
+N₁⫢␛󰫴ˢ
+    % ∴N₁∩M₁∈❴❴𝟙❵,N₁❵
+    󰤱 ∴N₁∩M₁∈❴❴𝟙❵,N₁❵
+    ∴N₁∩M₁=❴𝟙❵∨N₁∩M₁=N₁
+ᔲN₁∩M₁=❴𝟙❵
+    ↣M₁⊊N₁M₁
+    G/M₁⫢␛󰫴ˢ∴ꔧSCT:N₁M₁=G
+    ∴∀k≥1:NₖM₁=G
+    ∴ⒶG/Nᵣ₋₁=Nᵣ₋₁M₁/Nᵣ₋₁≅M₁/(Nᵣ₋₁∩M₁)☠⫢␛󰫴ˢ∴Nᵣ₋₁∩M₁=❴𝟙❵
+    􋑏Nᵣ₋₁=N₁
+    ᔲn₂∈Nᵣ₋₁∖N₁
+        Nᵣ₋₁M₁=N₁M₁∴∃n₁∈N₁⋄m∈M₁✣n₂=n₁m
+        ∴n₁󷹁n₂=m∈nᵣ₋₁∩M₁∴n₁=n₂
+        ↯∵n₁∈N₁∵teˢᵗ=1
+        ∴Nᵣ₋₁=N₁✓
+    ⌜composition factors⌟´⫢Ⓜ
+        G/M₁=&…≅&N₁
+        G/N₁=&…≅&M₁ ☠
+    ✓
+ᔲN₁∩M₁=N₁
+    ꔧ2nd_iso_thm:Nᵣ₋₁M₁/Nᵣ₋₁≅M₁/(Nᵣ₋₁∩M₁)
+    M₁⫢␛󰫴ˢ∧Nᵣ₋₁∩M₁⫢␛󰫴􋇡∴
+
+☠
+
+
+
+
+SxS ops: ⇒⇐⟺∧∨
+S:
+∀C⇥S⥌
+∃C✣S⥌
+V⋄V⫢E
+V∈V
+
+D:
+∀C⎉C
+⎊C
+ᔲS
+
+C:
+V≔X
+V∈V
+
+V:
+¬⇒⇐⟺∧∨⋄∀⇥∃∄✣⥌∈
+
+a∈A⋄b⫢󰫯
+
+⎉a=b⁹⋄c⫢dₐ
+⎉

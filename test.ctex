@@ -6,5 +6,46 @@ fun-math
 \begin{document}
 \maketitle
 
-Look at my table: ⚸f=󰲡x⌃2⚸ ⯝{‹󷹹x›:‹󷹹f(x)›}|{x:f(x)∀x∈10⭥}⯝
+This is a document for testing purposes. Here is some text. The latex inline math equation is $x+y=1$.
+A single newline has just happened. It should not have created a new paragraph.
 
+A double newline has just happened. It definitely should have. Look, I found a latex-style blocked equation! $$a^2+b^2=7.$$ Unfortunately, there are no integer solutions. The next equation, however, has one: Ⓐa^2+b^2=8.☠ Align* was tested. If ¢a and ¢b are integers, then $a=\pm b$. The use of the cent sign and a latex command were used here.
+
+We know that if ¢a is an integer, then so is a². But the converse is not true: 3≠a² for any a∈ℤ. With that, we test mathmode detection. We can also use cents here: ℤ² is a ¢ℤ²-module.\\
+This line is the result of a newline command in Latex. That concludes the mathmode testing.
+
+A side effect of how aligns were created is the ease of use for multi-aligns. We can create these very easily. The following was copied from my Algebra homework.
+Ⓜ⁵    ❴𝟙❵&=N₀     &&⊲N₁     &&⊲…          &&⊲Nᵣ₋₁&&⊲Nᵣ=G
+      ❴𝟙❵&=N₀∩Mₛ₋₁&&⊲N₁∩Mₛ₋₁&&⊲…⊲Nᵣ₋₁∩Mₛ₋₁ ⠤
+                                          &&⊲Nᵣ₋₁&&⊲Nᵣ=G
+      ❴𝟙❵&=M₀∩Nᵣ₋₁&&⊲M₁∩Nᵣ₋₁&&⊲…⊲Mₛ₋₁∩Nᵣ₋₁&&⊲Mₛ₋₁&&⊲Mₛ=G
+      ❴𝟙❵&=M₀     &&⊲M₁     &&⊲…          &&⊲Mₛ₋₁&&⊲Mₛ=G   ☠
+Except for the ␛⠤, which was added to test its functionality. I actually don't think this will work because of the unrecognized character. Custom fonts to come later.
+
+Oh, by the way, the secret to the universe is  hidden in this comment
+Also, the secret to the multiverse, though it spans many lines, is 🟑
+hidden
+in
+this
+multiline
+comment 🟑
+Oh darn, comments work, so you can't see these secrets.
+Also, if a todo appears with a sorry, like 󰤱 sorry
+then a warning will appear and make the terminal show. %That's all for comments, folks.
+
+\newpage
+
+A newpage command.
+
+The source code reveals my true feelings, but I will put this here: 󷹹\lies(x). Even though a preset is used, we can still add individual commands.
+
+Here is the testing of English. It is rather annoying. We need to make sure ESC effects ENQ (update test when custom font), which is a new thing added to reference math with English. For example, ENQ␛∪ will output "␅∪". These things have modifiers. For example, for almost every symbol, the superscript infinity will provide ␅∪􋔛.
+
+We also have many english nouns and adjectives that don't have common symbolic representations. For example, we can have G󰫴󰀅₇, but then we must have G≅ℤ/7ℤ, since 7∈¶. We can also put English into mathmode with angle brackets, like 7∈¶⌜ but ⌟8∉¶.
+
+See the other pdf (not done yet) for a table of symbols and their translations, as well as their keybinds for our xcompose file.
+󰤱make other pdf sorry
+
+One funny thing that happens now, but not in a previous version is the ability to recognize when English happens. When English is detected, as before, it is put outside of mathmode with closing and re-opening of dollar signs. However, this is bad because we end up with empty mathmode every time we begin or end with English. We now detect this, and prevent empty mathmode. Furthermore, if English is detected in parenthesis, we cannot end mathmode; we must use the Latex text command. If more math is detected in this command, we can nest indefinitely.
+
+¿ English is used at the beginning of a line or after a period, it will be capitalized. 

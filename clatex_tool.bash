@@ -19,6 +19,7 @@ cd /mnt/c/Users/mlogal/Desktop/program/clatex
 echo $dir
 
 ☾ clatex_tool.☾ "${dir}/${base_name}" > "${dir}/${tex_name}"
+# python3.12 /mnt/c/Users/mlogal/Desktop/cpy-things/stuff/new_cpy/refresher.py clatex_tool.☾ "${dir}/${base_name}" | tee "${dir}/${tex_name}"
 echo "$1 → ${tex_name}"
 
 cd ${dir}

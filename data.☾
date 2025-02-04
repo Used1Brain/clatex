@@ -1,6 +1,6 @@
 presets = {
     "complex-analysis-uark": ‹\documentclass[12pt,oneside]{article}𝗻\usepackage[utf8]{inputenc}𝗻\usepackage{scsnowman, lmodern, amsmath, amsthm, amsfonts,amssymb, dsfont, wasysym, mathdots,qtree}𝗻\usepackage{sagetex}𝗻\makeatletter𝗻\@ifpackagelater{sansmathfonts}{2019/03/31}𝗻{\usepackage[I]{sansmathfonts}}𝗻{\usepackage{sansmathfonts}}𝗻\makeatother \let \rmdefault \sfdefault𝗻\usepackage[paperwidth=148mm, paperheight=182.4mm, vmargin=1cm]{geometry}𝗻\let \thepage \relax𝗻\pagestyle{empty}𝗻\usepackage{setspace} \doublespacing𝗻\usepackage{enumitem}𝗻\setenumerate[1]{label=(\alph*)}𝗻\setenumerate[2]{label=(\roman*)}𝗻\setlist{𝗻  listparindent=\parindent,𝗻  parsep=0pt,𝗻}𝗻\newcommand{\problem}[2]{\par𝗻   {\onehalfspacing𝗻  \setenumerate[1]{label=(\alph*),nolistsep}𝗻  \setenumerate[2]{label=(\roman*),nolistsep}𝗻  \noindent\textbf{Problem #1}𝗻  {\rmfamily #2\par\medskip}} \sffamily}𝗻\newcommand{\re}{\operatorname{Re}}\newcommand{\im}{\operatorname{Im}}\newcommand{\spn}{\operatorname{span}}\newcommand{\tr}{\operatorname{tr}}\newcommand{\Res}{\operatorname{Res}}𝗻\newcommand{\ord}{\operatorname{ord}}𝗻›,
-    "fun-math": ‹\documentclass[10pt,reqno]{amsart}𝗻\usepackage{sagetex}𝗻\usepackage{halloweenmath, eucal,fullpage,times,amsmath,amsthm,amssymb,mathrsfs,stmaryrd,color,accents,tipa,relsize,wasysym,dsfont,url,tikz,tikz-cd,mathdots}𝗻\usepackage[all]{xy}𝗻\usepackage[ margin=2cm]{geometry}𝗻\usepackage[colorlinks=false,pagebackref,hyperindex]{hyperref}𝗻\usetikzlibrary{arrows,matrix}𝗻\hypersetup{colorlinks,citecolor=violet,linkcolor=violet,urlcolor=blue}𝗻\newtheoremstyle{custom}{}{}{}{}{}{.}{ }{\thmname{}\thmnumber{}\thmnote{\bfseries #3}}𝗻\newtheoremstyle{Theorem }{}{}{\itshape}{}{}{.}{ }{\thmname{\bfseries #1}\thmnumber{\;\bfseries #2}\thmnote{\;(\bfseries #3)}}𝗻\theoremstyle{Theorem}𝗻\newtheorem{thm}{Theorem}[section]𝗻\newtheorem{cor}[thm]{Corollary}𝗻\newtheorem{lem}[thm]{Lemma}𝗻\newtheorem{prop}{Proposition}[section]𝗻\theoremstyle{definition}𝗻\newtheorem{dff}[thm]{Definition}𝗻\newtheorem{xmp}[thm]{Example}𝗻\newtheorem{rmk}[thm]{Remark}𝗻\newtheorem{prob}[thm]{Problem}𝗻\newtheorem{conj}[thm]{Conjecture}𝗻\newenvironment{solution}{\paragraph{\textit{Solution:}}}{\hfill$\smiley$\\}𝗻\newcommand{\spn}{\operatorname{span}}\newcommand{\im}{\operatorname{Im}}\newcommand{\tr}{\operatorname{tr}}\newcommand{\Aut}{\operatorname{Aut}}𝗻\newcommand{\ord}{\operatorname{ord}}𝗻\newcommand{\Syl}{\operatorname{Syl}}›
+    "fun-math": ‹\documentclass[10pt,reqno]{amsart}𝗻\usepackage{esint}𝗻\usepackage{sagetex}𝗻\usepackage{halloweenmath, eucal,fullpage,times,amsmath,amsthm,amssymb,mathrsfs,stmaryrd,color,accents,tipa,relsize,wasysym,dsfont,url,tikz,tikz-cd,mathdots,realhats,scsnowman}𝗻\usepackage[all]{xy}𝗻\usepackage[ margin=2cm]{geometry}𝗻\usepackage[colorlinks=false,pagebackref,hyperindex]{hyperref}𝗻\usetikzlibrary{arrows,matrix}𝗻\hypersetup{colorlinks,citecolor=violet,linkcolor=violet,urlcolor=blue}𝗻\newtheoremstyle{custom}{}{}{}{}{}{.}{ }{\thmname{}\thmnumber{}\thmnote{\bfseries #3}}𝗻\newtheoremstyle{Theorem }{}{}{\itshape}{}{}{.}{ }{\thmname{\bfseries #1}\thmnumber{\;\bfseries #2}\thmnote{\;(\bfseries #3)}}𝗻\theoremstyle{Theorem}𝗻\newtheorem{thm}{Theorem}[section]𝗻\newtheorem{cor}[thm]{Corollary}𝗻\newtheorem{lem}[thm]{Lemma}𝗻\newtheorem{prop}{Proposition}[section]𝗻\theoremstyle{definition}𝗻\newtheorem{dff}[thm]{Definition}𝗻\newtheorem{xmp}[thm]{Example}𝗻\newtheorem{rmk}[thm]{Remark}𝗻\newtheorem{prob}[thm]{Problem}𝗻\newtheorem{conj}[thm]{Conjecture}𝗻\newenvironment{solution}{\paragraph{\textit{Solution:}}}{\hfill$\smiley$\\}𝗻\newcommand{\spn}{\operatorname{span}}\newcommand{\im}{\operatorname{Im}}\newcommand{\tr}{\operatorname{tr}}\newcommand{\Aut}{\operatorname{Aut}}𝗻\newcommand{\ord}{\operatorname{ord}}𝗻\newcommand{\Res}{\operatorname{Res}}𝗻\newcommand{\Syl}{\operatorname{Syl}}𝗻\newcommand{\Frac}{\operatorname{Frac}}›
 }
 env_repl = {
     "⍞": ‹center›,
@@ -125,6 +125,7 @@ en_repl = {
     "↣": [‹then›,{}],
     "⚇": [‹commutes›,{}],
     "Æ": [‹almost everywhere›,{}],
+    "æ": [‹a.e.›,{}],
     "󰘡": [‹bounded below›,{
         "ᴮ": ‹by›
     }],
@@ -161,7 +162,10 @@ en_repl = {
         "ᴾ": ‹proceed›,
         "ᵖ": ‹prove›,
         "􋄒": ‹are done›
-    }]
+    }],
+    "": [‹prove›,{}],
+    "🃌": [‹the amount›,{}],
+    "⏏": [‹we have›,{}]
 }
 en_repl_a = {
     "⍟": [‹diagram›,{
@@ -279,7 +283,7 @@ en_repl_a = {
         "ᴾ": ‹permutation›,
         "􋁃": ‹alternating›,
         "ᴳ": ‹finitely generated›,
-        "ᵖ": ‹$p$-›
+        "ᵖ": ‹ $p$-›
     }],
     "󰫿": [‹ring›,{
         "󰀂": ‹commutative›,
@@ -366,13 +370,15 @@ en_repl_a = {
         "ᴿ": ‹ring›,
         "ⱽ": ‹vector space›,
         "󰀂": ‹category›,
-        "ᵍ": ‹graph›,
+        "ᵍ": ‹graph›
     }],
     "󰠩": [‹homomorphism›,{
-        "󰀅": ‹field›,
-        "ᴳ": ‹group›,
-        "ᴿ": ‹ring›,
-        "ⱽ": ‹vector space›
+        "􋒯": ‹field›,
+        "􋒫": ‹group›,
+        "􋒭": ‹ring›,
+        "􋓇": ‹vector space›,
+        "􍉇": ‹surjective›,
+        "􋒣": ‹injective›
     }],
     "󰑭": [‹measure›,{
         "󰀅": ‹finite›,
@@ -392,7 +398,45 @@ en_repl_a = {
     "󰍒": [‹metric space›,{}],
     "``": [‹representation›,{
         "ᴹ": ‹matrix›
-    }]
+    }],
+    "ϡ": [‹surface›,{
+        "􋀋": ‹projective›,
+        "􋉀": ‹affine›
+    }],
+    "Ϡ": [‹hypersurface›,{
+        "􋀋": ‹projective›,
+        "􋉀": ‹affine›
+    }],
+    "󰫻": [‹number›,{
+        "ᵒ": ‹odd›,
+        "ᵉ": ‹even›,
+        "􋛟": ‹prime›,
+        "􋃐": ‹composite›,
+        "ᵖ": ‹perfect›,
+        "⁺": ‹positive›,
+        "⁻": ‹negative›,
+        "􋄼": ‹nonpositive›,
+        "􋄽": ‹nonnegative›,
+        "􋀏": ‹real›,
+        "􊿿": ‹complex›,
+        "􋜇": ‹imaginary›,
+        "``": ‹surreal›,
+        "``": ‹hyperreal›,
+        "􋉤": ‹extended real›,
+        "􋀌": ‹rational›,
+        "􋉆": ‹irrational›,
+        "􋉍": ‹transcendental›,
+        "􋉀": ‹algebraic›,
+        "ᴬ": ‹abundant›,
+        "ᴰ": ‹deficient›,
+        "􋄅": ‹square›,
+        "": ‹cube›,
+        "􋞍": ‹triangular›,
+        "􊽺": ‹fibonacci›,
+        "⁰": ‹nonzero›,
+        "ᵃ": ‹amicable›
+    }],
+    "⬤": [‹unit›,{}]
 }
 
 #ideas to add: 󰭃󰉤󰔆󱎤󱎥󱎦󰜕󰙱󰏣󰘧󰬰󱃠󱈚󱘗󱔏󱣩󰞦󱙮󰶅󰶆󱎱󱏕󰳋󱍢󱐚
@@ -694,8 +738,8 @@ replacements = {
     "⅚": ‹{\frac{5}{6}}›,
     "⅝": ‹{\frac{5}{8}}›,
     "⅞": ‹{\frac{7}{8}}›,
-    "ᵜ": ‹\pi ›,
-    "⊥": ‹\perp›,
+    "ᵜ": ‹^{\pi} ›,
+    "⊥": ‹\perp ›,
     "⸓": ‹\mod ›,
     "☺": ‹\smiley ›,
     "⇔": ‹\Leftrightarrow ›,
@@ -781,10 +825,11 @@ replacements = {
     "⨑": ‹\landdownint ›,
     "⨕": ‹\pointint ›,
     "⨖": ‹\sqint ›,
+    "⨏": ‹\fint ›,
     "⑀": ‹sorry ›,
     "󰤃": ‹\middle|›,
     "│": ‹\middle|›,
-    "☃": ‹{\text{\raisebox{-3px}{\scsnowman[scale=1.5,body,hat=red,muffler=blue]}}}›,
+    "☃": ‹{\text{\raisebox{-3pt}{\scsnowman[scale=1.5,body,hat=red,muffler=blue]}}}›,
     "󷹁": ‹^{-1}›,
     "􋐥": ‹\ln ›,
     "􋐦": ‹\lg ›,
@@ -926,7 +971,12 @@ replacements = {
     "𝚄": ‹U›,
     "󰮿": ‹\pumpkin ›,
     "": ‹\mathghost ›,
-    "󰭟": ‹\mathbat ›
+    "󰭟": ‹\mathbat ›,
+    "≪": ‹\ll ›,
+    "⋘": ‹\lll ›,
+    "≫": ‹\gg ›,
+    "⋙": ‹\ggg ›,
+    "∗": ‹\ast ›
 }
 
 #
@@ -938,8 +988,8 @@ parens = {
     ")": ‹\right)}›,
     "{": ‹{›,
     "}": ‹}›,
-    "⦋": ‹{[›, #available
-    "⦌": ‹]}›,
+    "⦋": ‹[›,
+    "⦌": ‹]›,
     "❴": ‹{\left\{›,
     "❵": ‹\right\}}›,
     "⌈": ‹{\left\lceil ›,
@@ -954,7 +1004,7 @@ parens = {
     "⟭": ‹\end{matrix}\rangle}›,
     "⦅": ‹{\left(\begin{matrix}›,
     "⦆": ‹\end{matrix}\right)}›,
-    "⁑": ‹\end{matrix}\right.}›,
+    "⁑": ‹\end{matrix}\right.}›, {
     "⟨": ‹{\left\langle ›,
     "⟩": ‹\right\rangle}›,
     "⦑": ‹{\langledot ›,
@@ -967,8 +1017,8 @@ parens = {
     "》": ‹\rangle\rangle}›,
     "｟": ‹{\left( ›,
     "｠": ‹\right)}›,
-    "【": ‹{[( ›, #available
-    "】": ‹)]}›,
+    "【": ‹{\left\Vert ›,
+    "】": ‹\right\Vert}›,
     "«": ‹{\langle\langle ›, #available
     "»": ‹\rangle\rangle}›,
     "🢔": ‹{\left(›,
